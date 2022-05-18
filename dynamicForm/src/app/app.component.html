@@ -1,0 +1,73 @@
+
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+      <button type="submit" class="float btn btn-primary disabled" [disabled]="!profileForm.valid">Submit</button>
+      <!-- <small class="text-danger" *ngIf="profileForm.invalid && profileForm.touched">Please enter valid to submit</small> -->
+      <button type="button" class="float btn btn-secondary" (click)="AddNew()">Add New</button>
+      <br>
+      <br>
+    <div class="row">
+      <div class="col-sm-1">
+        <label>No.</label>
+      </div>
+      <div class="col">
+        <label>Field to Evaluate</label>
+      </div>
+      <div class="col">
+        <label>Operator</label>
+      </div>
+      <div class="col">
+        <label>Grouping</label>
+      </div>
+      <div class="col">
+    <label>Actions</label>
+      </div>
+    </div>
+  <div formArrayName="addform">
+<div *ngFor="let alie of addform.controls; let i=index" [formGroupName]="i">
+ <div class="row">
+<div class="col-sm-1">
+    <label>{{i+1}}</label>
+</div>
+  <div class="col">
+    <input type="text" id="fieldtoEvaluate{{i}}" formControlName="fieldtoEvaluate" class="form-control" placeholder="Field to Evaluate">
+  <small class="text-danger" *ngIf="alie.get('fieldtoEvaluate')?.invalid && alie.get('fieldtoEvaluate')?.touched">Invalid data in Field to Evaluate</small>
+  </div>
+  <div class="col">
+    <input type="text" id="Operator{{i}}" formControlName="Operator" class="form-control" placeholder="Operator">
+    <small class="text-danger" *ngIf="alie.get('Operator')?.invalid && alie.get('Operator')?.touched">Invalid data in Operator</small>
+  </div>
+  <div class="col">
+    <input type="text" id="Grouping{{i}}" formControlName="Grouping" class="form-control" placeholder="Grouping">
+    <small class="text-danger" *ngIf="alie.get('Grouping')?.invalid && alie.get('Grouping')?.touched">Invalid data in Grouping</small>
+  </div>
+  <div class="col">
+    <button type="button"(click)="cancel(i)" title="cancel"><span>x</span></button>
+  </div>
+</div>
+<br>
+</div>
+<br>
+</div>
+  <!-- </div> -->
+</form>
+<div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th *ngFor="let k of key">{{k}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let arr of keyvalue">
+        <td *ngFor="let val of arr">{{val}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="messageshow" class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Submit Sucessful!!</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="deleteMessage()">
+    <!-- <span aria-hidden="true">&times;</span> -->
+    <span>X</span>
+  </button>
+</div>

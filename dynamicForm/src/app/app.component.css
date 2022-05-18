@@ -1,0 +1,12 @@
+.float{
+    float: right;
+}
+.text-danger{
+    color: red;
+}
+input.ng-invalid.ng-touched{
+    border: red,1px,solid;
+}
+disabled:hover {
+    cursor:not-allowed
+ }

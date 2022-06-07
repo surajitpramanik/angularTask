@@ -1,30 +1,30 @@
 <div *ngIf="showPopUp" class="container mt-6">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-      Open modal
-    </button>
-  </div>
-  
-  <!-- The Modal -->
-  <div class="modal" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-  
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Fields to Display</h4>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-  
-        <!-- Modal body -->
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-sm-8" style="border: 1px solid black">
-                <div *ngFor="let data of selectedData">
-                <label><span>{{data.heading}}</span></label>
-              </div>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+    Open modal
+  </button>
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Fields to Display</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-8" style="border: 1px solid black">
+            <div *ngFor="let data of selectedData">
+              <label><span style="color:#33A2FF"><b>{{data.heading}}</b></span></label>
             </div>
-            <div class="col-sm-4">
-          <!-- <div class="dropdown">
+          </div>
+          <div class="col-sm-4">
+            <!-- <div class="dropdown">
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
               Dropdown
             </button>
@@ -36,46 +36,51 @@
               <li><a class="dropdown-item">Another DropDown Item</a></li>
             </ul>
           </div> -->
-          <select name="dropdown" id="dropdown-value">
-            <option>Name</option>
-            <option>Address1</option>
-            <option>Address2</option>
-            <option>Address3</option>
-          </select>
-        </div>
-        </div>
-          <br>
-          <div class="row" style="border: 1px solid black">
-            <label><span><strong>{{totalData}} selected</strong></span></label>
+            <select name="dropdown" id="dropdown-value">
+              <option>Name</option>
+              <option>Address1</option>
+              <option>Address2</option>
+              <option>Address3</option>
+            </select>
           </div>
-          <br>
-  <div class="row">
+        </div>
+        <br>
+        <div class="row" style="border: 1px solid black">
+          <label><span><strong>{{totalData}} selected</strong></span></label>
+        </div>
+        <br>
+        <div class="row">
+          <p><a href="#" (click)="addNewRelationship()" style="color:#33A2FF">Add New Relationship</a></p>
+        </div>
+        <div class="row">
           <div class="col">
             <div *ngFor="let data of datas">
-            <button type="button" (click)="addData(data)" [disabled]="data.flag">+</button>
-            <a class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#data"><label>{{data.heading}}</label></a>
-            <div id="data" class="collapse">{{data.collapseData}}
+              <a class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#data"
+                style="color:black"><label>{{data.heading}}</label></a>
+              <div *ngFor="let collapseData of data.collapseData" id="data" class="collapse"><button type="button"
+                  (click)="addData(data,collapseData)" [disabled]="collapseData.flag">+</button> {{collapseData.data}}
+              </div>
             </div>
           </div>
+
+          <div class="col">
+            <div *ngFor="let data of selectedData">
+              <a class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#data"
+                style="color:black"><label>{{data.heading}}</label></a>
+              <div *ngFor="let collapseData of data.collapseData" id="data" class="collapse"><button type="button"
+                  (click)="deleteData(data,collapseData)">-</button> {{collapseData.data}}
+              </div>
+            </div>
           </div>
-  
-    <div class="col">
-      <div *ngFor="let data of selectedData">
-      <button type="button" (click)="deleteData(data)">-</button>
-      <a class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#demo"><label>{{data.heading}}</label></a>
-      <div id="demo" class="collapse">{{data.collapseData}}
+        
       </div>
     </div>
+
+    <!-- Modal footer -->
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="closepopup()">Close</button>
     </div>
+
   </div>
 </div>
-  
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="closepopup()">Close</button>
-        </div>
-  
-      </div>
-    </div>
-  </div>
-  
+</div>

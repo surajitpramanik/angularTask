@@ -3,6 +3,7 @@
       <button type="submit" class="float btn btn-primary disabled" [disabled]="!profileForm.valid">Submit</button>
       <!-- <small class="text-danger" *ngIf="profileForm.invalid && profileForm.touched">Please enter valid to submit</small> -->
       <button type="button" class="float btn btn-secondary" (click)="AddNew()">Add New</button>
+      <button type="button" class="float btn btn-info" (click)="showpopup()">Pop Up</button>
       <br>
       <br>
     <div class="row">
@@ -71,3 +72,4 @@
     <span>X</span>
   </button>
 </div>
+<app-popup #attachpopup></app-popup>

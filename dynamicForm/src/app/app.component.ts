@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { PopupComponent } from './popup/popup.component';
+import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,6 +8,9 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
+
+  @ViewChild('attachpopup')
+  attachpopup!: PopupComponent;
   title = 'dynamicForm';
   field ={}
   profileForm:any = this.fb.group({});
@@ -14,6 +18,7 @@ export class AppComponent implements OnInit{
   keyvalue:any=[];
   messageshow:boolean=false;
   isSubmit:boolean = true;
+  showPopUp:boolean = false;
 //   profileForm:FormGroup = new FormGroup({});
 
    constructor(private fb: FormBuilder){
@@ -77,6 +82,9 @@ get f(){
  }
  deleteMessage(){
 this.messageshow=false;
+ }
+ showpopup(){
+  this.attachpopup.popup();
  }
 
 }

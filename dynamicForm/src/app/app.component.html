@@ -73,3 +73,98 @@
   </button>
 </div>
 <app-popup #attachpopup></app-popup>
+
+<!-- New Screen Design -->
+<div class="accordion accordion-flush" id="accordionFlushExample" style="padding-left: 50px;padding-right:50px;">
+  <div class="accordion-item border border-4">
+    <h2 class="accordion-header" id="flush-headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+        <h4 style="font-weight:bold;color:rgb(9, 9, 88)">Fields to Display <i class='fa fa-info-circle'></i></h4>
+      </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+        <div  class="row" style="padding-left:10px;">
+          <div class="col-sm-8" style="border: 1px solid black;">
+            <i class="fa fa-search" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i>
+            <!-- <div > -->
+              <!-- <div style="background-color: #F8F9F9"> -->
+              <label *ngFor="let data of selectedData" style="background-color: #F4F6F6"><span style="color:#0f76ca;background-color: #d3f2f2;background-position: inherit;"><b>{{data.heading}}</b></span><b><span> x</span></b>&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <!-- </div> -->
+          <!-- </div> -->
+          </div>
+          <div class="col-sm-4">
+            <select name="dropdown" id="dropdown-value" style="border: 1px solid black;width: 200px;">
+              <option>Name</option>
+              <option>Address1</option>
+              <option>Address2</option>
+              <option>Address3</option>
+            </select>
+          </div>
+        </div>
+        <br>
+        <div class="row" style="padding-left: 10px;padding-right: 10px;">
+          <div class="col-sm-12" style="border: 1px solid black;background-color: #F8F9F9;">
+            <h6 style="font-weight:bold;color:black">{{totalData}} selected</h6>
+          </div>
+        </div>
+        <div class="row" style="padding-left: 10px;padding-right: 10px;">
+          <div class="col-sm-6" style="border: 1px solid black">
+          <a href="#" style="font-weight: bold">Add New Relationship</a>
+          <table>
+          <div *ngFor="let data of datas">
+            <!-- <div class="btn btn-link" data-bs-toggle="collapse" id="data.heading" data-bs-target="#id"
+              style="color:black"><label><a  (click)="expand(data)"><i *ngIf="!data.headFlag" class="fa fa-plus"></i>{{data.heading}}</a></label></div> -->
+              
+              
+                <thead>
+              <ng-container style="color:black">
+                <a href="#" (click)="expand(data)"><i *ngIf="!data.headFlag" class="fa fa-plus"></i>
+                  <i *ngIf="data.headFlag" class="fa fa-chevron-up" aria-hidden="true"></i></a>
+                {{data.heading}}
+              </ng-container>
+          
+            </thead>
+                <tbody>
+                  <tr>
+                    <ng-container *ngIf="data.headFlag" style="padding-left: 10px">
+            <div *ngFor="let collapseData of data.collapseData"><a
+                (click)="addData(data,collapseData)"> &nbsp; &nbsp; &nbsp;<i *ngIf="!collapseData.flag" class="fa fa-plus"></i></a> {{collapseData.data}}
+            </div>
+          </ng-container>
+          </tr>
+        </tbody>
+      
+          </div>
+        </table>
+        </div>
+          <div class="col-sm-6" style="border-left:1px solid black;border: 1px solid black">
+            <table>
+            <div *ngFor="let data of selectedData">
+              <thead>
+              <a class="btn btn-link"
+                style="color:black"><label>{{data.heading}}</label></a></thead>
+                <tbody>
+              <div *ngFor="let collapseData of data.collapseData"><a
+                  (click)="deleteData(data,collapseData)"><i class="fa fa-minus"></i></a> {{collapseData.data}}
+              </div>
+            </tbody>
+            </div>
+          </table>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox">
+            <h6 class="form-check-label" style="font-weight:bold;color:rgb(8, 8, 118)">Statistics Mode
+            <label style="font-weight:400 ;color:rgb(8, 8, 118)">Return search results in the form of a Statisticsreport by grouping and aggregating field values</label>
+          </h6>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
